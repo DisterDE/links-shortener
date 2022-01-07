@@ -1,16 +1,9 @@
 package pro.sky.java.repository;
 
-import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.stereotype.Repository;
-import pro.sky.java.domain.Link;
+import reactor.core.publisher.Mono;
 
-import java.time.LocalDateTime;
+public interface LinkRepository {
+    Mono<String> find(String shorten);
 
-@Repository
-public interface LinkRepository extends PagingAndSortingRepository<Link, Integer> {
-    Link findByShorten(String shorten);
-
-    void deleteAllByCreatedAtBefore(LocalDateTime dateTime);
-
-    Link findByOriginal(String original);
+    Mono<Boolean> save(String shorten, String original);
 }

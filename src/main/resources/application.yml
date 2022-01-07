@@ -2,12 +2,10 @@ server:
   port: 8081
 
 spring:
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    username: admin
-    password: password
-    url: jdbc:postgresql://localhost:5432/weather
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: false
+  cache:
+    redis:
+      cache-null-values: false
+  data:
+    redis:
+      repositories:
+        enabled: false
