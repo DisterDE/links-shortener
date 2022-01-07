@@ -6,3 +6,5 @@ spring:
     redis:
       repositories:
         enabled: false
+  redis:
+    host: redis
