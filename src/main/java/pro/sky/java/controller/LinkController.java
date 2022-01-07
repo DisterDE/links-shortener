@@ -19,14 +19,14 @@ public class LinkController {
 
     private final LinkService service;
 
-    @GetMapping("/shortener/{url}")
-    public Mono<Link> convertLink(@PathVariable String url) {
-        return service.convertToLink(url);
+    @GetMapping("/shortener/{original}")
+    public Mono<Link> convertLink(@PathVariable String original) {
+        return service.convertToLink(original);
     }
 
-    @GetMapping("/{shortUrl}")
-    public Mono<Void> redirect(@PathVariable String shortUrl, ServerHttpResponse response) {
-        return service.getOriginal(shortUrl).flatMap(v -> {
+    @GetMapping("/{shorten}")
+    public Mono<Void> redirect(@PathVariable String shorten, ServerHttpResponse response) {
+        return service.getOriginal(shorten).flatMap(v -> {
             if (!v.startsWith("http")) {
                 v = "https://" + v;
             }

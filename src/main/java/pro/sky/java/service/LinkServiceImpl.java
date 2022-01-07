@@ -19,7 +19,7 @@ public class LinkServiceImpl implements LinkService {
     public Mono<Link> convertToLink(String original) {
         String shorten = createShortLink();
         return repository.save(shorten, original)
-                .flatMap(v -> Mono.just(new Link(shorten, original)));
+                .flatMap(v -> Mono.just(new Link(original, shorten)));
     }
 
     @Override
